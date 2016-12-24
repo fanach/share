@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content='text/html;charset=utf-8' http-equiv='Content-Type'>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'>
+<meta content='yes' name='apple-mobile-web-app-capable'>
+<meta content='yes' name='mobile-web-app-capable'>
+<meta content='black-translucent' name='apple-mobile-web-app-status-bar-style'>
+<meta content='webkit' name='renderer'>
+<meta content='app-id=1050565468' name='apple-itunes-app'>
+<title>
+Fanach-Android
+</title>
+<link href='/uploads2/icons/263/2631687/android_icon_1481994588.png' rel='icon' sizes='192x192'>
+<link href='/uploads2/icons/263/2631687/retina_icon_1481994588.png' rel='apple-touch-icon' sizes='120x120'>
+<link href='/uploads2/icons/263/2631687/retina3x_icon_1481994588.png' rel='apple-touch-icon' sizes='180x180'>
+<link href='/uploads2/icons/263/2631687/ipad_icon_1481994588.png' rel='apple-touch-icon' sizes='144x144'>
+<link href='/uploads2/icons/263/2631687/ipad_icon_1481994588.png' rel='apple-touch-icon' sizes='152x152'>
+<link href='/uploads2/splashes/263/2631687/retina_splash_1481994588.png' media='(device-width: 320px) and (device-height: 568px)' rel='apple-touch-startup-image'>
+<link href='/uploads2/splashes/263/2631687/iphone4_portrait_retina_splash_1481994588.png' media='(device-width: 320px) and (device-height: 480px)' rel='apple-touch-startup-image'>
+<link href='/uploads2/splashes/263/2631687/iphone6_portrait_retina_splash_1481994588.png' media='(device-width: 375px) and (device-height: 667px)' rel='apple-touch-startup-image'>
+<link href='/uploads2/splashes/263/2631687/iphone6plus_portrait_retina_splash_1481994588.png' media='(device-width: 414px) and (device-height: 736px)' rel='apple-touch-startup-image'>
+<link href='/uploads2/splashes/263/2631687/ipad_portrait_retina_splash_1481994588.png' media='(device-width: 768px) and (device-height: 1024px) and (orientation:portrait)' rel='apple-touch-startup-image'>
+<link href='/uploads2/splashes/263/2631687/ipad_landscape_retina_splash_1481994588.png' media='(device-width: 768px) and (device-height: 1024px) and (orientation:landscape)' rel='apple-touch-startup-image'>
+<style>
+  html, body {
+    color: #333333;
+    font-family: -apple-system, "SF UI Text", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Zen Hei", sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+    overflow: hidden;
+    height: 100%; }
+  
+  body {
+    background: #efefef;
+    color: #333333; }
+    body.mobile {
+      background-color: white; }
+  
+  #download, .modal.fade, #header {
+    display: none; }
+  
+  #notification {
+    position: fixed;
+    top: -70px;
+    left: 0; }
+  
+  .notice {
+    padding: 10px;
+    font-size: 14px; }
+    .notice p {
+      margin-bottom: 10px; }
+  
+  .spinner {
+    width: 30px;
+    height: 30px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgba(51, 54, 58, 0.6) transparent;
+    border-radius: 100%;
+    transform-origin: 50% 50% 0px;
+    -webkit-animation: mb-spin 0.8s infinite linear;
+    animation: mb-spin 0.8s infinite linear;
+    display: inline-block; }
+  
+  @-webkit-keyframes mb-spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg); }
+  
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg); } }
+  
+  @keyframes mb-spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg); }
+  
+    100% {
+      -webkit-transform: rotate(359deg);
+      transform: rotate(359deg); } }
+  
+  .actions {
+    visibility: hidden; }
+  
+  #safemode, #nonsupport, #logo, #install, .cover, #device {
+    display: none; }
+  
+  #fontawesome {
+    position: absolute;
+    top: -65535px;
+    left: -65535px; }
+    #fontawesome .aw {
+      position: absolute;
+      width: auto;
+      white-space: nowrap; }
+    #fontawesome .ah {
+      position: absolute;
+      height: auto;
+      word-break: break-word;
+      word-wrap: break-word; }
+      #fontawesome .ah p {
+        margin-bottom: 5px;
+        white-space: pre-wrap; }
+        #fontawesome .ah p:last-child {
+          margin-bottom: 0px; }
+  
+  #loading {
+    width: 86px;
+    height: 86px;
+    z-index: 2;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    margin-left: -43px;
+    text-align: center;
+    font-size: 12px; }
+    #loading .logo, #loading .indicator {
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      width: 86px;
+      height: 86px;
+      overflow: hidden;
+      background: url("images/logo-lg.svg");
+      background-size: 86px 86px; }
+    #loading .logo {
+      opacity: 0.3; }
+    #loading .indicator {
+      opacity: 1;
+      -webkit-transition: all 0.5s ease-in-out;
+      -moz-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      height: 0%; }
+    #loading span {
+      position: absolute;
+      width: 300px;
+      left: 50%;
+      top: 110px;
+      margin-left: -150px;
+      font-size: 14px;
+      line-height: 28px;
+      color: #f77d77; }
+</style>
+
+<style>
+  #splash {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f0f0f2; }
+    #splash img {
+      position: absolute;
+      top: 0px;
+      left: 0;
+      width: 100%;
+      height: 100%; }
+    #splash img.landscape {
+      display: none; }
+    #splash .spinner {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      margin-left: -15px; }
+  
+  @media all and (orientation: landscape) {
+    #splash img {
+      position: absolute;
+      left: 0;
+      -webkit-transform: rotate(90deg);
+      -webkit-transform-origin: bottom left; }
+  
+    #splash .spinner {
+      position: absolute;
+      top: 50%;
+      margin-top: -16px; } }
+</style>
+
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="9K1X/nQVsD9VuWtzE1xSQdhcXXMaPIb3t84gW6FBQy086iaLPPHBIrVdLebXneUYSNsIRXydjfVFqmhYll9JSQ==" />
+</head>
+<body>
+<div id='fontawesome'>
+<i class='fa fa-user'></i>
+<div class='aw'></div>
+<div class='ah'></div>
+</div>
+<div id='loading'>
+<div class='logo'></div>
+<div class='indicator'></div>
+<span>
+正在读取 Fanach-Android...
+</span>
+</div>
+<div data-user='null' id='workspace'>
+<div id='install'>
+<div class='app-inner'>
+<img class='app-icon' src='/uploads2/icons/263/2631687/android_icon_1481994588.png'>
+<h1 class='app-name'>
+Fanach-Android
+</h1>
+<div class='app-update-time'>
+<span>
+最后更新
+:
+</span>
+<abbr class='timeago' title='2016-12-17T18:44:00Z'></abbr>
+</div>
+<a class='install-btn' href='/app/NrKSytjhm6GqbdfTS5CPydR8CwfyOTM?inapp=1'>
+直接查看
+</a>
+<a class='install install-btn'>
+安装
+</a>
+<a class='download' href='https://itunes.apple.com/cn/app/mockingbot/id1050565468?ls=1&amp;mt=8' id='ios-download'>
+下载墨刀客户端获得最佳展示体验
+</a>
+</div>
+</div>
+<div class='cover wechat'>
+<div class='tip-wrapper'>
+<p class='tip'>
+在浏览器中打开
+</p>
+<img class='arrow' src='images/short-arrow.png'>
+</div>
+</div>
+<div class='cover ipad'>
+<div class='tip-wrapper'>
+<p class='tip'>
+请点击
+<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAA1BAMAAADfUYSoAAAAFVBMVEUAAAAGfv8Eff8Xh/8Ae/cAgfcDev8kxpS2AAAABnRSTlMAgGPrExbGXyRsAAAAYUlEQVQ4y+3MsQ2AMBADQMMEofk6VSZgEyZ4Cu8/Ai+QXgpOmTJuYp2cR+aAZGMRM7rOKENzmss1/i/aDaJ5P6thO0s/C0OLJ3PV1/YTfZhtuvFLlOxjk7/LphmWTTPJ0B64+0mEocrEDQAAAABJRU5ErkJggg==' width='19'>
+,
+然后选择&quot;添加到主屏幕&quot;.
+</p>
+<img class='arrow' src='images/short-arrow.png'>
+</div>
+</div>
+<div class='cover iphone'>
+<div class='tip-wrapper iphone'>
+<p class='tip'>
+请点击
+<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACYAAAA1BAMAAADfUYSoAAAAFVBMVEUAAAAGfv8Eff8Xh/8Ae/cAgfcDev8kxpS2AAAABnRSTlMAgGPrExbGXyRsAAAAYUlEQVQ4y+3MsQ2AMBADQMMEofk6VSZgEyZ4Cu8/Ai+QXgpOmTJuYp2cR+aAZGMRM7rOKENzmss1/i/aDaJ5P6thO0s/C0OLJ3PV1/YTfZhtuvFLlOxjk7/LphmWTTPJ0B64+0mEocrEDQAAAABJRU5ErkJggg==' width='19'>
+,
+然后选择&quot;添加到主屏幕&quot;.
+</p>
+<img class='arrow' src='images/down-arrow.png'>
+</div>
+</div>
+<div class='cover building'>
+<div class='tip-wrapper'>
+<p class='tip'>
+正在生成 APK 文件
+</p>
+<div class='spinner'></div>
+</div>
+</div>
+</div>
+<div class='safe-mask' id='safemode'>
+<div class='indicator restore'>
+<div class='spinner'></div>
+<div class='text'>
+此操作可能需要几分钟，请您耐心等待...
+<span class='progress'>0%</span>
+</div>
+</div>
+<div class='indicator success'>
+<span class='icon'>
+<i class='fa fa-smile-o'></i>
+</span>
+<div class='text'>
+数据恢复成功，请刷新此页面。<a onclick="window.location.reload()"> 立刻刷新</a>
+</div>
+</div>
+</div>
+<div class='modal fade modal-small' id='safe-modal'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-body'>
+<img alt='' src='data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMTY4IDAgNjQgNjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDQwLjMgKDMzODM5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9ImljX2Vycm9yX291dGxpbmUiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2OC4wMDAwMDAsIDAuMDAwMDAwKSI+CiAgICAgICAgPGcgaWQ9Ikljb24tMjRweCI+CiAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJTaGFwZSIgcG9pbnRzPSIwIDAgNjQgMCA2NCA2NCAwIDY0Ij48L3BvbHlnb24+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0yOS4zMzMzMzMzLDQwIEwzNC42NjY2NjY3LDQwIEwzNC42NjY2NjY3LDQ1LjMzMzMzMzMgTDI5LjMzMzMzMzMsNDUuMzMzMzMzMyBMMjkuMzMzMzMzMyw0MCBaIE0yOS4zMzMzMzMzLDE4LjY2NjY2NjcgTDM0LjY2NjY2NjcsMTguNjY2NjY2NyBMMzQuNjY2NjY2NywzNC42NjY2NjY3IEwyOS4zMzMzMzMzLDM0LjY2NjY2NjcgTDI5LjMzMzMzMzMsMTguNjY2NjY2NyBaIE0zMS45NzMzMzMzLDUuMzMzMzMzMzMgQzE3LjI1MzMzMzMsNS4zMzMzMzMzMyA1LjMzMzMzMzMzLDE3LjI4IDUuMzMzMzMzMzMsMzIgQzUuMzMzMzMzMzMsNDYuNzIgMTcuMjUzMzMzMyw1OC42NjY2NjY3IDMxLjk3MzMzMzMsNTguNjY2NjY2NyBDNDYuNzIsNTguNjY2NjY2NyA1OC42NjY2NjY3LDQ2LjcyIDU4LjY2NjY2NjcsMzIgQzU4LjY2NjY2NjcsMTcuMjggNDYuNzIsNS4zMzMzMzMzMyAzMS45NzMzMzMzLDUuMzMzMzMzMzMgTDMxLjk3MzMzMzMsNS4zMzMzMzMzMyBaIE0zMiw1My4zMzMzMzMzIEMyMC4yMTMzMzMzLDUzLjMzMzMzMzMgMTAuNjY2NjY2Nyw0My43ODY2NjY3IDEwLjY2NjY2NjcsMzIgQzEwLjY2NjY2NjcsMjAuMjEzMzMzMyAyMC4yMTMzMzMzLDEwLjY2NjY2NjcgMzIsMTAuNjY2NjY2NyBDNDMuNzg2NjY2NywxMC42NjY2NjY3IDUzLjMzMzMzMzMsMjAuMjEzMzMzMyA1My4zMzMzMzMzLDMyIEM1My4zMzMzMzMzLDQzLjc4NjY2NjcgNDMuNzg2NjY2Nyw1My4zMzMzMzMzIDMyLDUzLjMzMzMzMzMgTDMyLDUzLjMzMzMzMzMgWiIgaWQ9IlNoYXBlIiBmaWxsPSIjRjc1QjUwIj48L3BhdGg+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4='>
+<h5>非常抱歉！</h5>
+<p id='alert-msg'></p>
+<button class='btn btn-primary' onclick='window.location.reload()'>立即刷新</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class='notice' id='nonsupport'>
+<p>
+非常抱歉，墨刀暂不支持您的浏览器，请<a href='/downloads'>下载我们的桌面版客户端</a>。
+</p>
+</div>
+
+<div id='modals'>
+<div class='modal fade' id='app-modal'></div>
+<div class='modal fade' id='template-modal'></div>
+<div class='modal fade modal-small' id='move-modal'></div>
+<div class='modal fade modal-small' id='transfer-modal'></div>
+<div class='modal fade modal-small' id='dup-modal'></div>
+<div class='modal fade modal-small' id='screen-remove-modal'></div>
+<div class='modal fade' id='team-modal'></div>
+<div class='modal fade' id='tag-modal'></div>
+<div class='modal fade' id='warning-modal'></div>
+<div class='modal fade' id='cheating-warning'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-body'>
+<p>
+<b>任何要求微信转账，汇款，购买授权码的行为都是诈骗行为</b>。
+</p>
+<p>
+墨刀官方唯一购买渠道： <a href="https://modao.cc">modao.cc</a>，其它都是诈骗，损失墨刀概不负责。
+</p>
+<p class='tips'>
+付费用户可去除此提示。
+</p>
+</div>
+<div class='modal-footer'>
+<a aria-hidden='true' data-dismiss='modal' href='#'>
+知道了，我不会转账
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='modal fade' id='chrome-warning'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>
+&times
+</span>
+</button>
+<h4 class='modal-title'>
+<i class='fa fa-warning'></i>
+警告
+</h4>
+</div>
+<div class='modal-body'>
+<p>
+我们发现您正在使用Chrome浏览器，要显示小于12像素的文字，您需要先修改Chrome 的默认最小字体大小设置，
+</p>
+<p>
+<a href='https://modao.cc/posts/63' target='blank'>
+设置方法请参看这篇文章。
+</a>
+</p>
+</div>
+<div class='modal-footer'>
+<button class='btn btn-default' data-dismiss='modal' type='button'>
+知道了！
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class='modal fade' id='renew_modal'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-header'>
+<a class='close' data-dismiss='modal' href='#'>×</a>
+<h4>帐户已过期</h4>
+</div>
+<div class='modal-body'>
+<p class='limit collaboration'>
+这是一个协作项目，您需要联系项目所有人续费才能继续编辑，如果您拥有此项目，您也可以移除所有协作者后继续编辑
+</p>
+<p class='limit exporting comments'>
+这是一个收费功能，您需要先续费才能继续使用此功能，如您不是项目或团队所有人，请联系项目或团队所有人续费。
+</p>
+<p class='limit exceed_quota'>
+您的项目已超出免费版图片存储限制（100M），您需要升级到付费方案方可继续使用。
+</p>
+</div>
+<div class='modal-footer'>
+<a class='btn btn-primary' href='/account'>
+立即续费
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class='modal fade' id='global-state-warning'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-header'>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>
+&times
+</span>
+</button>
+<h4 class='modal-title'>
+<i class='fa fa-warning'></i>
+警告
+</h4>
+</div>
+<div class='modal-body'>
+<p>
+<p>当前页面有不止1个页面状态，请切换到全局状态（状态0）添加新组件。</p><p><b>注意：在全局状态中的操作将会同步到所有其它状态。</b></p>
+</p>
+<p style='margin-top: 20px;margin-bottom:0;text-align:center'>
+<img src='images/workspace/global_state_zh-CN.png'>
+</p>
+</div>
+<div class='modal-footer'>
+<button class='btn btn-default' data-dismiss='modal' type='button'>
+知道了！
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class='modal fade' id='sharing-modal'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-header'>
+<a aria-hidden='true' class='close' data-dismiss='modal' href='#'>×</a>
+<h4>分享这个应用</h4>
+</div>
+<form>
+<div class='modal-body'></div>
+</form>
+</div>
+</div>
+</div>
+<div class='modal fade modal-small' id='trash-modal'></div>
+<div class='modal fade modal-small' id='collaborators-modal'></div>
+
+</div>
+
+<script>
+  (function() {
+    var splash;
+  
+    window.MBLocale = 'zh-CN';
+  
+    window.I18N = {
+      "new_app": "创建应用",
+      "preview_demo": "预览模板",
+      "create": "创建",
+      "setting": "设置",
+      "update": "更新",
+      "are_you_sure": "您确定要执行此操作吗？",
+      "screen_remove_confirmation": "有\u003cb\u003e {children} 个子页面\u003c/b\u003e，此页面及其所有子页面都将被删除, 您确定吗？",
+      "cant_remove_screen": "您的应用需要至少一个页面。",
+      "last_updated": "最后更新",
+      "support": "技术支持",
+      "carrier": "中国移动",
+      "remove_parent_only": "不，只删除父页面",
+      "remove_all": "是的，删除父页面及所有子页面",
+      "w": {
+        "label": "文字",
+        "text_view": "多行文字",
+        "pg": "手势",
+        "lr": "链接区域",
+        "icon_button": "图标",
+        "image_view": "图片",
+        "button": "按钮",
+        "webpage": "网页",
+        "mtooltip": "聊天气泡",
+        "rounded_rect": "矩形",
+        "circle_rect": "圆形",
+        "hr": "直线",
+        "ve": "竖线",
+        "triangleb": "三角形1",
+        "triangletl": "三角形2",
+        "navigation_bar": "标题栏",
+        "search_bar": "搜索栏",
+        "tab_bar": "底栏",
+        "tab_item": "标签",
+        "rectangle": "列表项",
+        "switch": "开关",
+        "map_view": "地图",
+        "keyboard": "键盘",
+        "sticky": "批注",
+        "status_bar": "状态栏",
+        "panel": "母版实例",
+        "group": "群组",
+        "text_view_placeholder": "如果你无法简洁的表达你的想法，那只说明你还不够了解它。\n  -- 阿尔伯特·爱因斯坦",
+        "navbar_title": "标题",
+        "search": "搜索",
+        "mcheckbox2": "复选框",
+        "mradiobutton": "单选框",
+        "mtext_input": "单行输入",
+        "mtextarea": "多行输入",
+        "mselect": "下拉框",
+        "mfile_input": "文件选择"
+      },
+      "drag_to_link_screen": "拖动圆圈到右侧目标页面创建交互",
+      "password": "密码",
+      "screen": "页面",
+      "home": "主页",
+      "pay_with_alipay": "translation missing: zh-CN.pay_with_alipay",
+      "share": "分享",
+      "rotate": "旋转屏幕",
+      "launch": "运行",
+      "new_screen": "新页面",
+      "back": "返回",
+      "return": "换行",
+      "login_from_desktop": "要创建新应用，请使用桌面浏览器登录墨刀。",
+      "install": "安装",
+      "tap": "请点击",
+      "public": "公开",
+      "private": "加密",
+      "add_to_home_screen": "然后选择\"添加到主屏幕\".",
+      "open_in_broswer": "translation missing: zh-CN.open_in_broswer",
+      "dup_app_confirmation": "确定要复制此项目吗？",
+      "data_lost_warning": "您还有数据没有保存，确定要退出吗？",
+      "recover_warning": "页面恢复会导致刷新, 请提前保存未修改的内容, 确定要恢复么?",
+      "inspector": {
+        "width": "宽",
+        "height": "高",
+        "font_size": "字体大小",
+        "line_height": "行高",
+        "bs": "边框宽度",
+        "ls": "边框样式",
+        "radius": "圆角半径",
+        "p": "等比例缩放图片",
+        "is": "图标大小",
+        "search": "搜索图标，比如: 设置",
+        "drop_image": "拖动图片到这里或者",
+        "click_to_upload": "点击选择图片上传",
+        "asset_search": "搜索图片",
+        "circularize": "圆形",
+        "squareize": "正方形",
+        "ro": "旋转角度",
+        "input_type": "键盘样式",
+        "z": "图层",
+        "o": "不透明度",
+        "ds": "阴影宽度",
+        "sc": "阴影颜色",
+        "ts": "阴影长度",
+        "tsc": "阴影颜色",
+        "bg": "背景色",
+        "tc": "前景色",
+        "bc": "边框颜色",
+        "f": "字体",
+        "padding": "边距",
+        "checked": "是否勾选",
+        "numeric": "数字键盘",
+        "fixed": "运行时固定位置，不随页面上下滑动",
+        "fixed_auto": "自动检测固定方向",
+        "fixed_top": "相对顶部固定",
+        "fixed_bottom": "相对底部固定",
+        "visible": "当前状态可见(快捷键：v)",
+        "placement": "箭头方向",
+        "offset": "箭头偏移",
+        "arrow_size": "箭头大小",
+        "blur": "模糊",
+        "grayscale": "灰度",
+        "sepia": "加温",
+        "brightness": "亮度",
+        "contrast": "对比度",
+        "hue_rotate": "色相",
+        "invert": "反色",
+        "saturate": "饱和度",
+        "reset": "重置"
+      },
+      "drag_to_create_screen": "拖动图片文件(可多张)到此处直接创建新页面",
+      "regenerate": "重新生成",
+      "recover": "恢复",
+      "got_it": "知道了！",
+      "no_deleted_screens": "页面回收站里空空如也",
+      "screen_transh_can": "页面回收站",
+      "network_error": "网络连接超时，无法保存您的操作，请检查您的网络并重新保存，取决于您的网络状况，如您上传的图片文件较大，可能需要多尝试几次。",
+      "save": "保存",
+      "unsupported": "不支持此文件类型",
+      "link_back": "返回上一页",
+      "save_tip": "保存(Ctrl-s)",
+      "drag_to_start": "拖动组件或图片文件到这里",
+      "home_screen": "主屏幕",
+      "signup_required": "您需要注册后才可使用此功能。",
+      "copy_tip": "复制",
+      "credential_required": "此应用受密码保护，请输入你的密码凭证：",
+      "state": "状态",
+      "new": "新建",
+      "widgets": "组件(1)",
+      "templates": "母版(2)",
+      "combos": "组合(3)",
+      "new_combo": "新组合",
+      "invalid_credential": "无效的密码，请刷新后重试。",
+      "icons": {
+        "all": "全部",
+        "basics": "常用",
+        "brand": "LOGO",
+        "text": "文字",
+        "directional": "方向箭头",
+        "form": "表单",
+        "video": "视频播放"
+      },
+      "app_device": "设备类型",
+      "app_type": "项目类型",
+      "icon": "图标",
+      "splash": "启动界面",
+      "size": "尺寸",
+      "icon_and_splash": "图标和启动图",
+      "tr": {
+        "none": "默认",
+        "slideleft": "右移入",
+        "slideright": "左移入",
+        "slidebottom": "下移入",
+        "slidetop": "上移入",
+        "leftmenu": "左菜单",
+        "rightmenu": "右菜单",
+        "leftdrawer": "左抽屉",
+        "rightdrawer": "右抽屉",
+        "slideleft2": "左弹入",
+        "slideright2": "右弹入",
+        "topin": "上弹入",
+        "popin": "下弹入",
+        "leftout": "左弹出",
+        "rightout": "右弹出",
+        "topout": "上弹出",
+        "popout": "下弹出"
+      },
+      "target": "目标页",
+      "png_only": "图标/启动屏幕只支持PNG文件",
+      "view_in_browser": "跳过安装提示界面，直接在微信/浏览器内运行应用。",
+      "all_apps": "我的当前应用",
+      "inbox": "移入当前应用",
+      "sharing": "分享",
+      "owner_only": "只有所有者或管理员可以邀请新成员",
+      "sharing_url": "分享链接",
+      "toolbox": {
+        "ruler": "尺寸(R)",
+        "text": "文字(T)",
+        "palette": "外观(O)",
+        "icons": "图标(I)",
+        "uploader": "图片上传(U)",
+        "states": "选择一个状态创建母版链接"
+      },
+      "last_saved": "最后保存",
+      "link_line": "显示/隐藏连接线",
+      "archive": "移入归档应用",
+      "download": "下载",
+      "archived": "我的归档应用",
+      "del_app_confirmation": "您确定要删除此应用吗？",
+      "wait_for_saving": "此页面尚未保存，请您稍后再试。",
+      "fix_data": "我们检测到您上次退出时有未保存的修改，您希望现在保存吗？",
+      "undo": "撤销(Ctrl-z)",
+      "redo": "重做(Ctrl-y)",
+      "cut": "剪切(Ctrl-x)",
+      "copy": "复制(Ctrl-c)",
+      "paste": "粘贴(Ctrl-v)",
+      "upload_image": "上传图片",
+      "site_title": "墨刀",
+      "send_front": "置顶",
+      "send_back": "置底",
+      "forward": "向上",
+      "backward": "向下",
+      "wechat": "微信",
+      "choose_screen": "选择要跳转的页面",
+      "hdistribute": "水平等间距",
+      "vdistribute": "垂直等间距",
+      "group": "组合(Ctrl-g)",
+      "ungroup": "打散(Ctrl-u)",
+      "hright": "右对齐",
+      "make_a_copy": "创建副本",
+      "more_options": "更多选项",
+      "unsaved": "未保存",
+      "all_saved": "全部操作已保存",
+      "timer": "定时器",
+      "no_timer": "未设置",
+      "cant_delete_template": "无法删除此母版，请先删除此母版的所有实例。",
+      "archive_confirmation": "您确定要归档此应用吗？",
+      "unarchive_confirmation": "您确定要取消归档此应用吗？",
+      "dc_confirm": "此页面有多个子页面，确定要复制所有子页面吗？",
+      "grid": "显示/隐藏对齐线",
+      "ruler": "显示/隐藏标尺",
+      "lock": "锁定/解锁组件",
+      "hleft": "左对齐",
+      "hcenter": "水平居中",
+      "vtop": "顶对齐",
+      "vbottom": "底对齐",
+      "vcenter": "垂直居中",
+      "zoomin": "放大",
+      "zoomout": "缩小",
+      "delete": "删除",
+      "expand_screen": "扩展屏幕高度",
+      "shrink_screen": "缩减屏幕高度",
+      "watch_tutorial": "观看教学视频",
+      "edit": "编辑",
+      "builtin_theme": "内置主题",
+      "custom_theme": "自定义主题",
+      "screen_bgcolor": "设置背景色",
+      "screen_bgimage": "设置背景图片",
+      "pg_tooltip": "全局手势",
+      "lr_tooltip": "可按住 Ctrl/Cmd 拖动鼠标快速创建链接区域",
+      "icon_tooltip": "图标",
+      "sticky_tooltip": "批注组件可显示在页面任意位置",
+      "menu_offset": "菜单偏移%",
+      "edit_demo": "编辑演示应用",
+      "create_new": "创建新应用",
+      "blank_app": "空白应用",
+      "template_app": "模板应用",
+      "basic": "基本",
+      "shapes": "形状",
+      "bars": "工具栏",
+      "others": "其它",
+      "webpage": "网页",
+      "drag_to_resize": "拖动调节页面高度",
+      "https_only": "双击编辑URL，处于安全考虑，外部网页组件仅支持https协议网站。",
+      "template_search": "搜索母版",
+      "no_archived_app": "小墨提示：还没有已归档的APP哦",
+      "archive_app": "你可以电脑访问墨刀归档APP",
+      "no_app": "小墨提示：还没有创建APP哦",
+      "visit_via_computer": "你可以电脑访问墨刀",
+      "view_demo": "查看官方演示项目",
+      "sharing_password": "访问密码（可为空）",
+      "edit_screens": "编辑应用",
+      "state_link_tutorial": "观看母版链接教学视频",
+      "highlight_clickable": "点击空白区域时高亮可点击区域",
+      "type2search": "点此搜索",
+      "all_assets": "全部图片",
+      "current_assets": "当前项目",
+      "text_color": "文本颜色",
+      "search_doc": "搜索文档",
+      "combo_search": "搜索组合",
+      "all_combos": "所有组合",
+      "my_combos": "我的组合",
+      "builtin": "内置",
+      "width": "宽度",
+      "height": "高度",
+      "sticky": "批注",
+      "new_template": "新母版",
+      "auto_scale": "自动缩放",
+      "auto_scale_tip": "自动缩放以适配不同设备, 比如，勾选此选项后，为iPhone 5设计的组合在iPhone 6上将会放大1.17倍，在iPhone 6 plus上会放大1.29倍。",
+      "drag_widgets_2create": "拖动组件到这里创建组合",
+      "upgrade_prompt": "新版本已修复下载功能，请使用浏览器访问modao.cc下载。",
+      "embed": "嵌入",
+      "submit_app_proposal": "需要更多模板应用？\u003ca href=\"#page/forum/feature_request\" data-toggle=\"modal\"\u003e点这里告诉我们\u003c/a\u003e",
+      "shell_type": "边框类型",
+      "device_shell": "真实设备边框",
+      "default_shell": "默认黑边框",
+      "none_shell": "无边框",
+      "upload_own": "上传自定义图片",
+      "upload_icon": "上传新图标",
+      "upload_splash": "上传新启动图",
+      "app_name": "名称",
+      "free_trial": "14天免费试用，查看价格",
+      "restricted": "白名单",
+      "public_intro": "在个人主页显示此项目。",
+      "private_intro": "所有知道 URL 和密码的人都可查看。",
+      "restricted_intro": "只有我指定的人有权查看。 ",
+      "expired": "已过期",
+      "manage_collaborators": "管理团队成员",
+      "roles": {
+        "admin": "管理员",
+        "admin_desc": "所有权限",
+        "editor": "协作者",
+        "editor_desc": "修改,复制",
+        "viewer": "审阅者",
+        "viewer_desc": "查看,评论",
+        "owner": "所有者"
+      },
+      "invite": "邀请",
+      "pending": "等待",
+      "others_apps": "的应用",
+      "remove_me": "退出",
+      "invalid_post": "请输入内容或选择一个应用",
+      "cant_invite_self": "您已经在此项目中.",
+      "left": "左",
+      "right": "右",
+      "top": "上",
+      "down": "下",
+      "dip_help": "如何设置应用分辨率？",
+      "dblclick_to_edit": "双击编辑母版",
+      "name_copy": "副本",
+      "load_project": "正在读取项目数据，请稍候...",
+      "connect_to_push_server": "正在连接同步服务器，请稍候...",
+      "reconnect_push_server": "您已断开与服务器的连接, 正在重新连接，请稍候...",
+      "invalid_email": "无效的Email",
+      "cant_invite_yourself": "不能邀请自己",
+      "already_invited": "已经邀请过了",
+      "exceed_collaborator_limit": "您已超出当前计划所支持的协作者数目，需要升级帐户。",
+      "in_progress": "此操作可能需要几分钟，请您耐心等待...",
+      "screen_list": "页面列表",
+      "text_mode": "文本选择模式",
+      "link_mode": "链接模式",
+      "order_period": "付款时长",
+      "current_plan": "当前方案",
+      "next_billing_on": "帐户到期日",
+      "balance_left": "translation missing: zh-CN.balance_left",
+      "enterprise": "企业版",
+      "actually_pay": "translation missing: zh-CN.actually_pay",
+      "monthly": "月付",
+      "yearly": "年付",
+      "pro": "增强版",
+      "free": "免费版",
+      "standard": "标准版",
+      "startup": "创业版",
+      "invalid_comment": "评论内容不能为空",
+      "electron_download_alert": "点击没有反应？请先从浏览器进行下载，我们已知悉并正在解决此问题。",
+      "no_permission": "对不起，您没有权限编辑此母版，请双击实例进行编辑。",
+      "widget_list": "组件列表",
+      "team_name": "团队名称",
+      "edit_team": "编辑团队",
+      "team_icon": "团队图标",
+      "team_color": "团队颜色",
+      "icon_and_color": "图标和颜色",
+      "no_team": "您还没有团队，点击这里创建一个",
+      "team": "团队",
+      "role": "角色",
+      "projects_count": "项目",
+      "screens_count": "页面",
+      "members_count": "团队成员",
+      "choose_team": "选择团队",
+      "no_joined_team": "您没有加入任何团队",
+      "my_assets": "我的图片",
+      "created_teams": "我创建的团队",
+      "joined_teams": "我加入的团队",
+      "team_app_tips": "此团队还没有任何应用，点击这里创建一个",
+      "create_app_tips": "您还没有任何应用，点击这里创建一个",
+      "new_team": "创建团队",
+      "team_intro": "点击了解团队功能",
+      "import_app": "导入个人应用",
+      "choose_app": "选择一个应用",
+      "dup_and_import": "复制此应用并导入副本",
+      "no_privilege": "对不起，您没有足够的权限执行此操作。",
+      "delete_projects_first": "删除团队前需要先删除所有项目。",
+      "refresh_token_confirmation": "此操作将会重新生成分享URL，使用旧URL将无法再访问此应用，确认要重新生成吗？",
+      "main_state": "默认状态",
+      "ani_name": "动效",
+      "ani_delay": "延迟",
+      "ani_duration": "动效时长",
+      "ani_count": "重复次数",
+      "animate": "动起来",
+      "none": "无",
+      "default": "默认",
+      "infinite": "无限循环",
+      "ani": {
+        "attention_seekers": "引起注意",
+        "bouncing_entrances": "弹入",
+        "flippers": "翻转",
+        "rotating_entrances": "旋转",
+        "sliding_entrances": "滑入",
+        "zoom_entrances": "缩放",
+        "specials": "其它",
+        "bounce": "弹跳",
+        "fadeIn": "渐现",
+        "flash": "闪烁",
+        "pulse": "跳动",
+        "rubberBand": "橡皮筋",
+        "shake": "抖动",
+        "swing": "摆动",
+        "tada": "哒啷",
+        "wobble": "摇晃",
+        "jello": "扭曲抖动",
+        "bounceIn": "弹入",
+        "bounceInDown": "上弹入",
+        "bounceInLeft": "左弹入",
+        "bounceInRight": "右弹入",
+        "bounceInUp": "下弹入",
+        "flipInX": "水平翻转",
+        "flipInY": "垂直翻转",
+        "spinning": "旋转（顺时针）",
+        "spinning-reverse": "旋转（逆时针）",
+        "rotateIn": "旋入",
+        "rotateInDownLeft": "左下旋转",
+        "rotateInDownRight": "右下旋转",
+        "rotateInUpLeft": "左下旋转",
+        "rotateInUpRight": "右上旋转",
+        "slideInDown": "上滑入",
+        "slideInLeft": "左滑入",
+        "slideInRight": "右滑入",
+        "slideInUp": "下滑入",
+        "zoomIn": "逐渐放大",
+        "zoomInDown": "从下放大",
+        "zoomInLeft": "从左放大",
+        "zoomInRight": "从右放大",
+        "zoomInUp": "从上放大",
+        "rollIn": "滚入",
+        "lightSpeedIn": "闪入"
+      },
+      "storage": "图片存储",
+      "whats_this": "这是什么？",
+      "exceed_screen_limit": "这个项目的组件及状态数量已超过 5 万，为了保证项目的打开速度，以及良好的编辑和运行时体验，您暂时不能再在此项目中添加新的页面及状态，我们建议您创建一个新的项目来完成这部分工作。",
+      "new_state": "新状态",
+      "tutorial": "教程",
+      "reset_target_screen": "重置目标页为初始状态",
+      "android.customize": "自定义安卓设备",
+      "unsaved_changes": "您的项目还有改动尚未保存，为保证导出内容无误，请先确保所有改动都已保存再重新导出。",
+      "transfer_screen": "转移此页面及子页面到其它项目",
+      "transfer": "转移",
+      "minputs": "输入组件",
+      "move": "移动",
+      "global_state": "全局状态",
+      "global_state_link_error": "全局状态不允许创建状态链接",
+      "input_types": {
+        "text": "文字",
+        "number": "数字",
+        "search": "搜索",
+        "password": "密码",
+        "date": "日期",
+        "time": "时间",
+        "datetime": "日期时间"
+      },
+      "move_tips": "创建一个副本，并移动副本到选定团队。",
+      "g": {
+        "tap": "单击",
+        "left": "左滑",
+        "right": "右滑",
+        "up": "上滑",
+        "down": "下滑",
+        "hold": "长按",
+        "dtap": "双击",
+        "shake": "摇一摇",
+        "timer": "定时器",
+        "vscroll": "垂直滚动"
+      },
+      "choose_move_dst": "选择移动位置",
+      "assets_manager": "上传/管理图片(A)",
+      "tags": "标签",
+      "tags_placeholder": "选择一个图片添加标签",
+      "name": "名称",
+      "choose_tag": "添加标签",
+      "create_tag": "创建新标签",
+      "insert_to_current": "插入图片到当前页面",
+      "create_new_screen": "使用此图片创建一个新页面",
+      "my_apps": "我的应用",
+      "team_apps": "我的团队",
+      "remove_clip": "移除图片裁切",
+      "update_colorset": "更新主题",
+      "colorset_tips": "提示：Shift-NUM套用主题，点选添加/更新主题",
+      "new_colorset": "添加主题",
+      "replace_image": "替换图片",
+      "cancel": "取消",
+      "duplicate_all": "是，连同子页面一起复制",
+      "duplicate_parent_only": "不，只复制父页面",
+      "coupon": "折扣码",
+      "new_flow": "新工作流",
+      "flow": "工作流",
+      "untitled_flow": "未命名工作流 - 双击进行编辑",
+      "ipa_building_starts": "已开始为您生成 iOS 应用程序，就绪后会发送邮件到您的邮箱，请注意查收。",
+      "ipa_device.not_configured": "您目前无可安装设备，请先联系团队管理员添加您的设备",
+      "no_ios_certificate": "没有可使用的苹果开发者证书，请联系墨刀客服添加证书。",
+      "go_to_account_settings": "前往帐户设置",
+      "ios_offline": "iOS IPA(离线)",
+      "import": "导入",
+      "import_template": "导入其它项目母版",
+      "choose_template_to_import": "选择要导入的母版",
+      "full_view": "全局工作流",
+      "edit_workflows": "编辑工作流",
+      "view_app": "直接查看",
+      "view_workflows": "查看工作流",
+      "expand_all": "展开所有父页",
+      "fold_all": "translation missing: zh-CN.fold_all",
+      "apply_coupon": "应用折扣",
+      "notifications": {
+        "all": "通知",
+        "view_all": "查看全部",
+        "load_more": "加载更多",
+        "request_permission": "请允许我们向您发送桌面通知",
+        "mark_all_as_read": "全部标记为已读",
+        "empty": "目前还没有通知"
+      },
+      "loading": "正在读取",
+      "untitled_editable": "未命名 - 双击进行编辑",
+      "got_message": "收到一条通知",
+      "buy": "购买",
+      "no_post": "还没有帖子，快来创建新帖吧",
+      "click2create": "点击创建",
+      "login_to_vote": "请登录后点赞",
+      "preview": {
+        "comment": {
+          "switch": "评论模式",
+          "tip": "双击预览区域添加新评论",
+          "tip_signin": "登录以添加新评论",
+          "tip_not_collaborator": "当前登录帐号不在协作名单中，请联系项目所有者获取权限，参与讨论",
+          "panel": "评论",
+          "thread_create": "添加评论",
+          "thread_delete_confirm": "永久删除本组评论？",
+          "thread_none": "无评论",
+          "thread_none_tip": "点击底部按钮或双击预览区添加新评论",
+          "thread_none_tip_signin": "使用下方按钮登录以添加新评论",
+          "comment_placeholder": "请在此输入评论，可使用 Shift + Enter 换行",
+          "comment_create": "回复",
+          "comment_delete_confirm": "永久删除本条回复？",
+          "modify_edit": "编辑",
+          "modify_delete": "删除",
+          "reply": " 条回复",
+          "reply_none": "无回复",
+          "reply_new": " 未读",
+          "reply_new_thread": "新",
+          "divider_new": "新评论",
+          "show_all_0": "展开",
+          "show_all_1": " 条评论",
+          "tag_edited": "修改",
+          "unfold": "展开"
+        },
+        "screen": {
+          "panel": "页面"
+        }
+      },
+      "web_signin": "登录",
+      "switch_to_free": "您的帐户过期后将会自动降级为免费方案，无需手动切换。",
+      "other_settings": "其它设置",
+      "new_post": "新帖子",
+      "choose_category": "选择分类",
+      "project": "项目",
+      "acl_moved_to_sharing": "应用访问权限设置已移至分享面板。",
+      "who_can_access": "谁可以访问此项目"
+    };
+  
+    splash = document.getElementById('splashimg');
+  
+    if (splash && window.innerWidth > window.innerHeight) {
+      splash.style.width = window.innerHeight + 'px';
+      splash.style.height = window.innerWidth + 'px';
+      splash.style.top = (0 - window.innerWidth) + 'px';
+    }
+  
+  }).call(this);
+</script>
+<link href='css/font-awesome.min.css' media='screen' rel='stylesheet'>
+<link href='css/roboto.css' media='screen' rel='stylesheet'>
+
+<link rel="stylesheet" media="screen" href="assets/sharing-33e8ac373082dd5dc05a1526bdee2478.css" />
+<link rel="stylesheet" media="screen" href="webpack/preview-97c173805ffdb2d4cd4f5fd2b61c3cca.css" />
+<script>
+  document.getElementsByClassName("indicator")[0].style.height = '30%';
+  var MBServer = "modao.cc";
+</script>
+<script src="assets/sharing-26c1f8b00201c62f59288deb6defabd1.js"></script>
+<script src="webpack/preview-28f11e327750a8311f04.js"></script>
+<script>
+  (function() {
+    MB.play = function() {
+      return MB.load('NrKSytjhm6GqbdfTS5CPydR8CwfyOTM', false, '');
+    };
+  
+    $(function() {
+      if (!window.navigator.standalone && !false && MB.isMobile() && !MB.isLocal()) {
+        MB.initWechat(null);
+        return MB.initInstall();
+      } else if (MB.isPhantom()) {
+        return $("body").addClass('phantom');
+      } else {
+        return MB.play();
+      }
+    });
+  
+  }).call(this);
+</script>
+
+</body>
+</html>
+<script>window.MBData=
+{"templates":[],"project":{"owner_id":327282,"owner_plan":"startup","owner_name":"Charlie M","owner_email":"zyfdegg@gmail.com","owner_avatar":"/images/avatar.png","limitation":5,"screens_count":8,"cid":"p2682FA2C461481992033686","team_cid":null,"name":"Fanach-Android","updated_at":"2016-12-17T18:44:00Z","created_at":"2016-12-17T16:26:32Z","access":"private","access_token":"NrKSytjhm6GqbdfTS5CPydR8CwfyOTM","version":"v2","icon":"/uploads2/icons/263/2631687/retina_icon_1481994588.png","splash":"/uploads2/splashes/263/2631687/android_splash_1481994588.png","width":360,"height":640,"device":"android","model":"google_nexus","scale":100,"archived":false,"template":false,"timestamp":"1482000240","combo":false,"behavior":"inherit","master":false,"builtin":false,"auto_scale":false,"parent_cid":null,"host_cid":null,"clones":0,"shell_type":"device","password":"","wechat":false,"highlight":true,"expired":false,"slack_web_hook_url":null,"validated":false},"screens":[{"cid":"s8E3835BB711481992049626","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"主页","orientation":"portrait","position":1,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f0f0f0","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"s14ED1AFED91481995255779","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"微信登录","orientation":"portrait","position":3,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f7f7f7","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"s2E07F872BF1481996137467","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"登录后","orientation":"portrait","position":4,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f7f7f7","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"s798C5E6DE81481996569997","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"已连接","orientation":"portrait","position":6,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f7f7f7","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"s86CED725551481996673446","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"连接中","orientation":"portrait","position":5,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f7f7f7","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"s2BC07C7B7D1481996761194","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"数据","orientation":"portrait","position":7,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f7f7f7","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"sB23CE0BEA81481997274326","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"数据含义","orientation":"portrait","position":9,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#f7f7f7","bgimage":"","deleter_name":null,"deleted_at":null},{"cid":"sF490F13BAD1481998178432","project_cid":"p2682FA2C461481992033686","parent_cid":null,"expanded":false,"name":"扫码","orientation":"portrait","position":2,"width":360,"height":640,"hh":null,"fh":null,"bgcolor":"#F0F0F2","bgimage":null,"deleter_name":null,"deleted_at":null}],"widgets":[{"cid":"w73054519551481992049627","screen_cid":"s8E3835BB711481992049626","timestamp":34412769,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"wB3C33D71E91481994672805","screen_cid":"s8E3835BB711481992049626","timestamp":34412805,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"w6E67E4C9C81481994907975","screen_cid":"s8E3835BB711481992049626","timestamp":34412841,"v":true,"name":"button","left":100.0,"top":210.0,"width":160.0,"height":30.0,"gid":"lAE8CBFAB111481996071042","locked":false,"text":"微信登录","fs":14,"br":8,"bs":1,"ha":"center","va":"middle","z":5,"th":"green","td":"normal","bo":0,"i":0,"bg":"#2baf2b","bc":"#0a8f08","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"ls":0,"icon":"","is":14,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w520BC810611481994953676","screen_cid":"s8E3835BB711481992049626","timestamp":34412846,"v":true,"name":"button","left":100.0,"top":280.0,"width":160.0,"height":30.0,"gid":"l3015F9353A1481998229133","locked":false,"text":"扫描配置","fs":14,"br":8,"bs":1,"ha":"center","va":"middle","z":5,"th":"","td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"ls":0,"icon":"","is":14,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wD9C72E748B1481995029613","screen_cid":"s8E3835BB711481992049626","timestamp":34412853,"v":true,"name":"icon_button","left":113.0,"top":210.0,"width":30.0,"height":25.0,"gid":null,"locked":false,"is":24,"icon":"comment","br":0,"bs":0,"z":5,"th":"","bg":"","bc":"","tc":"","o":100,"ds":0,"sc":"#222222","ro":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w259711088C1481995088799","screen_cid":"s8E3835BB711481992049626","timestamp":34412859,"v":true,"name":"icon_button","left":115.0,"top":285.0,"width":26.0,"height":18.0,"gid":null,"locked":false,"is":24,"icon":"camera","br":0,"bs":0,"z":5,"th":"","bg":"","bc":"","tc":"","o":100,"ds":0,"sc":"#222222","ro":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wB8DEC483E71481995255784","screen_cid":"s14ED1AFED91481995255779","timestamp":34412868,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"dark","bg":"#555","tc":"#fff","bc":"#444","o":100,"z":3},{"cid":"w63B3A1AD6B1481995281510","screen_cid":"s14ED1AFED91481995255779","timestamp":34412872,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"微信登录","fs":18,"z":4,"th":"dark","td":"normal","bo":0,"i":0,"bg":"#555","tc":"#fff","bc":"#444","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"w713D717E6B1481995328079","screen_cid":"s14ED1AFED91481995255779","timestamp":34412883,"v":true,"name":"text_view","left":50.0,"top":280.0,"width":270.0,"height":70.0,"gid":null,"locked":false,"text":"<p>登录后该应用将获得以下权限</p><p>*获得你的公开信息（昵称、头像等）</p>","fs":13,"br":0,"bs":0,"ha":"left","va":"top","z":5,"th":"","lh":18,"td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0","clip":null},{"cid":"w6BED3AC22B1481995673069","screen_cid":"s14ED1AFED91481995255779","timestamp":34412892,"v":true,"name":"image_view","left":120.0,"top":130.0,"width":100.0,"height":100.0,"gid":null,"locked":false,"bs":0,"br":0,"image":"/uploads2/images/681/6811803/raw_1481995690.png","z":5,"th":"","bg":"","bc":"","tc":"","o":100,"p":true,"ds":0,"sc":"#222222","ro":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0","clip":null,"filter":""},{"cid":"w0931924E701481995822156","screen_cid":"s14ED1AFED91481995255779","timestamp":34412899,"v":true,"name":"label","left":110.0,"top":230.0,"width":130.0,"height":45.0,"gid":null,"locked":false,"text":"<p>搬那砖</p>","fs":16,"br":0,"bs":0,"ha":"center","va":"middle","z":5,"th":"","lh":23,"td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w87C3C4F51F1481995854271","screen_cid":"s14ED1AFED91481995255779","timestamp":34412905,"v":true,"name":"hr","left":30.0,"top":265.0,"width":300.0,"height":10.0,"gid":null,"locked":false,"z":5,"th":"","bc":"","ls":0,"ro":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w65D26C98BC1481995886517","screen_cid":"s14ED1AFED91481995255779","timestamp":34412910,"v":true,"name":"button","left":50.0,"top":360.0,"width":270.0,"height":35.0,"gid":"lBAAC01F3B41481997779690","locked":false,"text":"确认登录","fs":16,"br":8,"bs":1,"ha":"center","va":"middle","z":5,"th":"green","td":"normal","bo":0,"i":0,"bg":"#2baf2b","bc":"#0a8f08","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"ls":0,"icon":"","is":14,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w598834E3701481996137471","screen_cid":"s2E07F872BF1481996137467","timestamp":34412927,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"w45FFC80A931481996152445","screen_cid":"s2E07F872BF1481996137467","timestamp":34412931,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"wF67D5260761481996355512","screen_cid":"s2E07F872BF1481996137467","timestamp":34412943,"v":true,"name":"circle_rect","left":130.0,"top":180.0,"width":100.0,"height":100.0,"gid":"l45C73B635B1481997815207","locked":false,"text":"<p>立即连接</p>","fs":14,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"cyan","td":"normal","bo":0,"i":0,"bg":"#26c6da","bc":"#00acc1","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"flipInY","ani_delay":"0","ani_count":"1","ani_duration":".5s"},{"cid":"w7C96E088631481996570002","screen_cid":"s798C5E6DE81481996569997","timestamp":34412927,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"w17A9D51B7B1481996570011","screen_cid":"s798C5E6DE81481996569997","timestamp":34412931,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"w8E2F037C331481996570017","screen_cid":"s798C5E6DE81481996569997","timestamp":34412943,"v":true,"name":"circle_rect","left":130.0,"top":180.0,"width":100.0,"height":100.0,"gid":"l0CD44EB6E21481998437750","locked":false,"text":"<p>已连接</p>","fs":14,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"green","td":"normal","bo":0,"i":0,"bg":"#2baf2b","bc":"#0a8f08","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w853E3F89841481996673451","screen_cid":"s86CED725551481996673446","timestamp":34412927,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"wB8B8246F221481996673459","screen_cid":"s86CED725551481996673446","timestamp":34412931,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"w97BEC7260D1481996673466","screen_cid":"s86CED725551481996673446","timestamp":34412943,"v":true,"name":"circle_rect","left":130.0,"top":180.0,"width":100.0,"height":100.0,"gid":"l5DA936286A1481998045783","locked":false,"text":"<p>连接中</p>","fs":14,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"lblue","td":"normal","bo":0,"i":0,"bg":"#29b6f6","bc":"#039be5","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"flipInY","ani_delay":"0","ani_count":"3","ani_duration":".5s"},{"cid":"wE7238C79281481996761198","screen_cid":"s2BC07C7B7D1481996761194","timestamp":34412927,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"w7017AB01981481996761204","screen_cid":"s2BC07C7B7D1481996761194","timestamp":34412931,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"wE4BA8DDD351481996761210","screen_cid":"s2BC07C7B7D1481996761194","timestamp":34412943,"v":true,"name":"circle_rect","left":130.0,"top":180.0,"width":100.0,"height":100.0,"gid":"l3E08BAF1851481999669139","locked":false,"text":"<p>断开连接</p>","fs":14,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"red","td":"normal","bo":0,"i":0,"bg":"#e84e40","bc":"#dd191d","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wB43A2A7CD01481996960543","screen_cid":"s2BC07C7B7D1481996761194","timestamp":34413026,"v":true,"name":"rounded_rect","left":50.0,"top":370.0,"width":80.0,"height":30.0,"gid":"l0B863FC5F01481997696292","locked":false,"text":"<p>237.6M</p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"#9e9e9e","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wF6F253A2E31481997023837","screen_cid":"s2BC07C7B7D1481996761194","timestamp":34413032,"v":true,"name":"rounded_rect","left":150.0,"top":370.0,"width":190.0,"height":30.0,"gid":"lB25F67E6801481997642488","locked":false,"text":"<p>786.4M</p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w6C6513622A1481997146100","screen_cid":"s2BC07C7B7D1481996761194","timestamp":34413042,"v":true,"name":"rounded_rect","left":130.0,"top":370.0,"width":35.0,"height":30.0,"gid":"l1408D119B31481997688485","locked":false,"text":"<p>68M</p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"#f0f0f0","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wF206EB91B21481997274332","screen_cid":"sB23CE0BEA81481997274326","timestamp":34412927,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"wBA494680951481997274339","screen_cid":"sB23CE0BEA81481997274326","timestamp":34412931,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"w487F74435F1481997274345","screen_cid":"sB23CE0BEA81481997274326","timestamp":34412943,"v":true,"name":"circle_rect","left":130.0,"top":180.0,"width":100.0,"height":100.0,"gid":"l279959D2481481996522-09FCB3A8627E75DFD8435","locked":false,"text":"<p>断开连接</p>","fs":14,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"red","td":"normal","bo":0,"i":0,"bg":"#e84e40","bc":"#dd191d","tc":"#fff","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w8975D353291481997274349","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413026,"v":true,"name":"rounded_rect","left":50.0,"top":370.0,"width":80.0,"height":30.0,"gid":null,"locked":false,"text":"<p><br></p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"#9e9e9e","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w733976BCBD1481997274353","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413032,"v":true,"name":"rounded_rect","left":150.0,"top":370.0,"width":190.0,"height":30.0,"gid":null,"locked":false,"text":"<p>787M</p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w1FA9E2845D1481997274357","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413042,"v":true,"name":"rounded_rect","left":130.0,"top":370.0,"width":35.0,"height":30.0,"gid":null,"locked":false,"text":"<p>68M</p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"#f0f0f0","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w6652EC49F41481997295295","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413073,"v":true,"name":"rounded_rect","left":50.0,"top":370.0,"width":290.0,"height":30.0,"gid":"l940588256C1481997725533","locked":false,"text":"<p><br></p>","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wF7FC8E08F11481997334288","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413079,"v":true,"name":"rounded_rect","left":68.0,"top":375.0,"width":20.0,"height":20.0,"gid":null,"locked":false,"text":"","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"#9e9e9e","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w966C68E8981481997341289","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413083,"v":true,"name":"rounded_rect","left":168.0,"top":375.0,"width":20.0,"height":20.0,"gid":null,"locked":false,"text":"","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"#f0f0f0","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wDDBEF176751481997343080","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413087,"v":true,"name":"rounded_rect","left":255.0,"top":375.0,"width":20.0,"height":20.0,"gid":null,"locked":false,"text":"","fs":14,"br":0,"bs":1,"ha":"center","va":"middle","z":5,"lh":20,"th":"","td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wCC341AD9161481997441312","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413105,"v":true,"name":"label","left":94.0,"top":373.0,"width":33.0,"height":25.0,"gid":null,"locked":false,"text":"<p>已用</p>","fs":16,"br":0,"bs":0,"ha":"center","va":"middle","z":5,"th":"","lh":23,"td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w8C91F1FAC01481997490816","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413114,"v":true,"name":"label","left":193.0,"top":373.0,"width":33.0,"height":25.0,"gid":null,"locked":false,"text":"<p>今日</p>","fs":16,"br":0,"bs":0,"ha":"center","va":"middle","z":5,"th":"","lh":23,"td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wEBEAF0604E1481997503202","screen_cid":"sB23CE0BEA81481997274326","timestamp":34413118,"v":true,"name":"label","left":281.0,"top":372.0,"width":33.0,"height":25.0,"gid":null,"locked":false,"text":"<p>剩余</p>","fs":16,"br":0,"bs":0,"ha":"center","va":"middle","z":5,"th":"","lh":23,"td":"normal","bo":0,"i":0,"bg":"","bc":"","tc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222","ro":0,"padding":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wCF25B6BFBD1481998178453","screen_cid":"sF490F13BAD1481998178432","timestamp":34413156,"v":true,"name":"status_bar","left":null,"top":null,"width":360.0,"height":23.0,"gid":null,"locked":false,"text":"中国移动","th":"light","bg":"","tc":"","bc":"","o":100,"z":3},{"cid":"wA497CB2BC41481998265813","screen_cid":"sF490F13BAD1481998178432","timestamp":34413166,"v":true,"name":"navigation_bar","left":null,"top":null,"width":360.0,"height":55.0,"gid":null,"locked":false,"text":"Fanach","fs":18,"z":4,"th":"","td":"normal","bo":0,"i":0,"bg":"","tc":"","bc":"","o":100,"ts":0,"tsc":"#aaaaaa","ds":0,"sc":"#222222"},{"cid":"w57FC961EAB1481998299357","screen_cid":"sF490F13BAD1481998178432","timestamp":34413174,"v":true,"name":"hr","left":80.0,"top":170.0,"width":200.0,"height":10.0,"gid":null,"locked":false,"z":5,"th":"","bc":"","ls":0,"ro":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w82C93D29931481998316196","screen_cid":"sF490F13BAD1481998178432","timestamp":34413180,"v":true,"name":"hr","left":80.0,"top":360.0,"width":200.0,"height":10.0,"gid":null,"locked":false,"z":5,"th":"","bc":"","ls":0,"ro":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wC2577362E61481998327454","screen_cid":"sF490F13BAD1481998178432","timestamp":34413183,"v":true,"name":"ve","left":70.0,"top":178.0,"width":10.0,"height":185.0,"gid":null,"locked":false,"z":5,"th":"","bc":"","ls":0,"ro":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"w295859D7B11481998364378","screen_cid":"sF490F13BAD1481998178432","timestamp":34413192,"v":true,"name":"ve","left":279.0,"top":178.0,"width":10.0,"height":185.0,"gid":null,"locked":false,"z":5,"th":"","bc":"","ls":0,"ro":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"},{"cid":"wD75AD91A201481998730255","screen_cid":"sF490F13BAD1481998178432","timestamp":34413208,"v":true,"name":"image_view","left":105.0,"top":215.0,"width":150.0,"height":105.0,"gid":"l5AF790D7DE1481999077589","locked":false,"bs":0,"br":0,"image":"/uploads2/images/681/6811911/raw_1481998723.jpeg","z":5,"th":"","bg":"","bc":"","tc":"","o":100,"p":true,"ds":0,"sc":"#222222","ro":0,"ls":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0","clip":null,"filter":""},{"cid":"w93E76062B51481998905730","screen_cid":"sF490F13BAD1481998178432","timestamp":34413224,"v":true,"name":"hr","left":90.0,"top":250.0,"width":180.0,"height":10.0,"gid":null,"locked":false,"z":5,"th":"dark","bc":"#444","ls":2,"ro":0,"fixed":false,"fixed_type":1,"ani_name":"none","ani_delay":"0","ani_count":"1","ani_duration":"0"}],"links":[{"cid":"lAE8CBFAB111481996071042","screen_cid":"s8E3835BB711481992049626","target_cid":"s14ED1AFED91481995255779","transition":"slideleft","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l3015F9353A1481998229133","screen_cid":"s8E3835BB711481992049626","target_cid":"sF490F13BAD1481998178432","transition":"slideleft","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"lBAAC01F3B41481997779690","screen_cid":"s14ED1AFED91481995255779","target_cid":"s2E07F872BF1481996137467","transition":"slideright","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l279959D2481481996522312","screen_cid":"s2E07F872BF1481996137467","target_cid":"sA14D310A3D1481996507379","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l45C73B635B1481997815207","screen_cid":"s2E07F872BF1481996137467","target_cid":"s86CED725551481996673446","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l0CD44EB6E21481998437750","screen_cid":"s798C5E6DE81481996569997","target_cid":"s2BC07C7B7D1481996761194","transition":"none","gesture":"timer","timer":2.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l5DA936286A1481998045783","screen_cid":"s86CED725551481996673446","target_cid":"s798C5E6DE81481996569997","transition":"none","gesture":"timer","timer":2.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"lB25F67E6801481997642488","screen_cid":"s2BC07C7B7D1481996761194","target_cid":"sB23CE0BEA81481997274326","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l1408D119B31481997688485","screen_cid":"s2BC07C7B7D1481996761194","target_cid":"sB23CE0BEA81481997274326","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l0B863FC5F01481997696292","screen_cid":"s2BC07C7B7D1481996761194","target_cid":"sB23CE0BEA81481997274326","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l0C786703901481999209805","screen_cid":"s2BC07C7B7D1481996761194","target_cid":"sADA762E7031481999164115","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l64AE804C521481999464828","screen_cid":"s2BC07C7B7D1481996761194","target_cid":"s48C9AB37FF1481999430389","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l3E08BAF1851481999669139","screen_cid":"s2BC07C7B7D1481996761194","target_cid":"s2E07F872BF1481996137467","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l940588256C1481997725533","screen_cid":"sB23CE0BEA81481997274326","target_cid":"s2BC07C7B7D1481996761194","transition":"none","gesture":"tap","timer":0.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"},{"cid":"l5AF790D7DE1481999077589","screen_cid":"sF490F13BAD1481998178432","target_cid":"s86CED725551481996673446","transition":"none","gesture":"timer","timer":2.0,"menu_offset":75,"reset":true,"ani_duration":"0.2s","ani_delay":"","state_cid":null,"widget_cids":"","targetstate_cid":null,"sourcestate_cid":"default"}],"panels":[],"screen_aligns":[],"screenstates":[],"widgetstates":[],"panelstates":[],"devices":{"android":{"google_nexus":{"width":360,"height":640,"name":"Google Pixel"},"samsung":{"width":360,"height":640,"name":"Samsung"},"lg":{"width":360,"height":640,"name":"LG - V10/G4/G3/G Flex","hide":true},"moto":{"width":360,"height":640,"name":"Motorola - Moto X/G/E","hide":true},"htc_one":{"width":360,"height":640,"name":"HTC - One M8/M9/E9","hide":true},"sony_xperia":{"width":360,"height":640,"name":"Sony - Xperia Z3/Z5","hide":true},"Xiaomi":{"width":360,"height":640,"name":"XiaoMi"},"Huawei":{"width":360,"height":640,"name":"Huawei"},"Vivo/Oppo":{"width":360,"height":640,"name":"Oppo R7/Vivo X5","hide":true},"CoolPad":{"width":360,"height":640,"name":"CoolPad - Dazen X7/Note","hide":true},"Meizu":{"width":360,"height":600,"name":"Meizu"},"Smartisan":{"width":360,"height":640,"name":"Smartisan","hide":true},"google_nexus_4":{"width":384,"height":640,"name":"Google Nexus 4","hide":true},"customize":{"width":360,"height":640,"name":"Customize"}},"web":{"desktop":{"width":1440,"height":1024,"name":"Webpage"}},"ipad":{"iphone_4":{"width":320,"height":480,"scale":100,"icon_size":"120x120","name":"iPhone 4","hide":true},"iphone_5":{"width":320,"height":568,"scale":100,"icon_size":"120x120","name":"iPhone 5"},"iphone_6":{"width":375,"height":667,"scale":100,"icon_size":"180x180","name":"iPhone 6/7"},"iphone_6_plus":{"width":414,"height":736,"scale":100,"icon_size":"180x180","name":"iPhone 6/7 Plus"},"ipad_3_4":{"width":768,"height":1024,"scale":75,"icon_size":"152x152","name":"iPad"},"ipad_pro":{"width":1024,"height":1366,"scale":75,"icon_size":"152x152","name":"iPad Pro"}},"iphone":{"iphone_4":{"width":320,"height":480,"scale":100,"icon_size":"120x120","name":"iPhone 4","hide":true},"iphone_5":{"width":320,"height":568,"scale":100,"icon_size":"120x120","name":"iPhone 5"},"iphone_6":{"width":375,"height":667,"scale":100,"icon_size":"180x180","name":"iPhone 6/7"},"iphone_6_plus":{"width":414,"height":736,"scale":100,"icon_size":"180x180","name":"iPhone 6/7 Plus"},"ipad_3_4":{"width":768,"height":1024,"scale":75,"icon_size":"152x152","name":"iPad"},"ipad_pro":{"width":1024,"height":1366,"scale":75,"icon_size":"152x152","name":"iPad Pro"}},"default":{"iphone":"iphone_5","ipad":"ipad_3_4","android":"google_nexus"}},"collaborators":[],"threads":[],"comments":[],"teams":[]}</script>
